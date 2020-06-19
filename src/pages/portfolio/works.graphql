@@ -1,0 +1,11 @@
+query works {
+    works {
+        nodes {
+            id
+            title
+            shortDescription
+            date
+            imgPath
+        }
+    }    
+}
