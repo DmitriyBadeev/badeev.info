@@ -1,0 +1,37 @@
+.background {
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 30, 30, .95);
+    display: none;
+    transition: all .3s;
+    padding: 50px 70px;
+
+    .wrapper {
+        margin-top: 30px;
+        a {
+            display: flex;
+            font-size: 24px;
+            margin: 20px 10px;
+
+            &::before {
+                content: "—";
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.cross {
+    position: absolute;
+    right: 70px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 60px;
+    color: rgb(241, 241, 241);
+
+    &:hover {
+        color: white;
+    }
+}

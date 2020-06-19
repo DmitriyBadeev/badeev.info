@@ -1,0 +1,39 @@
+.avatarWrapper {
+    height: 350px;
+    background: @primary-color;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+}
+
+.avatar {
+    width: 270px;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 0 10px 0;
+    right: 0;
+}
+
+.avatarDesc {
+    margin: 15px 10px;
+    .info {
+        display: flex;
+        justify-content: space-around;
+    }
+    .name {
+        margin-top: 0!important;
+    }
+}
+
+.iconLink {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    transition: transform .2s @ease-base;
+    border: none;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}

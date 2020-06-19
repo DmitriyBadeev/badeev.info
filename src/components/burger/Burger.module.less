@@ -1,0 +1,40 @@
+.wrapper {
+    height: 45px;
+    width: 45px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s @ease-base;
+
+    &:hover {
+        background: rgb(242, 242, 242);
+    }
+
+    .burger {
+        position: relative;
+        height: 10px;
+        width: 35px;
+
+        &::before, 
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            height: 2px;
+            background: @heading-color;
+        }
+        
+        &::before {
+            top: 0;
+            width: 35px;
+        }
+        
+        &::after {
+            bottom: 0;
+            width: 30px;
+        }
+    } 
+}
+
