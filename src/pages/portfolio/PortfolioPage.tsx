@@ -5,6 +5,7 @@ import styles from './PortfolioPage.module.less'
 import { Row, Col, Typography } from 'antd'
 import { getStringDate } from '../../helpers/dateHelpers'
 import { useWorksQuery } from '../../types'
+import Loading from '../../components/loading/Loading'
 
 const { Title } = Typography;
 
@@ -36,7 +37,7 @@ const PortfolioPage: React.FC = () => {
     }
 
     return (
-        loading ? <Title level={1}>Loading...</Title> :
+        loading ? <Loading /> :
             <FadePage>
                 <div className={styles.wrapperPage}>
                     <Row justify="space-between" gutter={[0, 50]}>
