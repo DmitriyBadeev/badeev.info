@@ -1,17 +1,17 @@
-import React from 'react'
-import Card from './Card'
-import CardDescription from './CardDescription'
-import ImageCard from './ImageCard'
-import { Link } from 'react-router-dom'
-import { Maybe } from '../../types'
+import React from "react"
+import Card from "./Card"
+import CardDescription from "./CardDescription"
+import ImageCard from "./ImageCard"
+import { Link } from "react-router-dom"
+import { Maybe } from "../../types"
 
-import styles from './cards.module.less'
+import styles from "./cards.module.less"
 
 type propTypes = {
-    img: any,  //TODO как-то типизировать
-    title?: Maybe<string>,
-    date: string,
-    desc?: Maybe<string>,
+    img: any //TODO как-то типизировать
+    title?: Maybe<string>
+    date: string
+    desc?: Maybe<string>
     route: string
 }
 
@@ -23,7 +23,6 @@ const ProjectCard: React.FC<propTypes> = (props) => {
             </Card>
             <CardDescription date={props.date} title={props.title} desc={props.desc} />
         </Link>
-
     )
 }
 

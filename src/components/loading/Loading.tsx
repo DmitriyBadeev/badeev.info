@@ -1,6 +1,6 @@
-import React from 'react'
-import { Spin } from 'antd'
-import styles from './Loading.module.less'
+import React from "react"
+import { Spin } from "antd"
+import styles from "./Loading.module.less"
 
 const Loading: React.FC = () => {
     return (

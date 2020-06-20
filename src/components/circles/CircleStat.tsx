@@ -1,20 +1,18 @@
-import React from 'react'
-import { Typography } from 'antd'
-import styles from './circles.module.less'
+import React from "react"
+import { Typography } from "antd"
+import styles from "./circles.module.less"
 
 const { Paragraph } = Typography
 
 type propTypes = {
-    number : number,
-    desc : string
+    number: number
+    desc: string
 }
 
-const CircleStat : React.FC<propTypes> = (props) => {
+const CircleStat: React.FC<propTypes> = (props) => {
     return (
         <div className={styles.wrapper}>
-            <div className={styles.circle}>
-                {props.number}
-            </div>
+            <div className={styles.circle}>{props.number}</div>
             <Paragraph>{props.desc}</Paragraph>
         </div>
     )

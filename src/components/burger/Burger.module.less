@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all .2s @ease-base;
+    transition: all 0.2s @ease-base;
 
     &:hover {
         background: rgb(242, 242, 242);
@@ -17,24 +17,23 @@
         height: 10px;
         width: 35px;
 
-        &::before, 
+        &::before,
         &::after {
-            content: '';
+            content: "";
             position: absolute;
             right: 0;
             height: 2px;
             background: @heading-color;
         }
-        
+
         &::before {
             top: 0;
             width: 35px;
         }
-        
+
         &::after {
             bottom: 0;
             width: 30px;
         }
-    } 
+    }
 }
-

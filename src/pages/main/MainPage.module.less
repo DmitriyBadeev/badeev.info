@@ -3,29 +3,29 @@
 }
 
 .mainSectionWrapper {
-    height         : calc(100vh - 100px);
-    border-bottom  : 4px solid rgba(34, 34, 34, .1);
-    display        : flex;
+    height: calc(100vh - 100px);
+    border-bottom: 4px solid rgba(34, 34, 34, 0.1);
+    display: flex;
     justify-content: space-between;
 
     .rightCol {
         align-self: center;
 
         .subMainTitle {
-            text-align : right;
-            font-size  : 28px;
+            text-align: right;
+            font-size: 28px;
             font-weight: 400;
-            margin     : 0;
-            color      : @primary-color;
+            margin: 0;
+            color: @primary-color;
         }
 
         .mainTitle {
-            font-size  : 90px;
+            font-size: 90px;
             font-weight: 400;
             line-height: 130px;
             font-weight: 400;
-            margin     : 0;
-            text-align : right;
+            margin: 0;
+            text-align: right;
         }
     }
 
@@ -41,53 +41,53 @@
 }
 
 .figure {
-    position  : absolute;
-    transition: all .3;
-    box-shadow: 0 0 40px rgba(0, 0, 0, .07);
+    position: absolute;
+    transition: all 0.3;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.07);
     background: white;
 }
 
 .square {
-    top          : 2vw;
-    right        : 39vw;
-    width        : 14vw;
-    height       : 14vw;
+    top: 2vw;
+    right: 39vw;
+    width: 14vw;
+    height: 14vw;
     border-radius: 10px;
-    animation    : Square 9s infinite;
+    animation: Square 9s infinite;
 }
 
 .circle {
-    top          : -9vw;
-    right        : 50vw;
-    width        : 14vw;
-    height       : 14vw;
-    animation    : Circle 8s infinite;
+    top: -9vw;
+    right: 50vw;
+    width: 14vw;
+    height: 14vw;
+    animation: Circle 8s infinite;
     border-radius: 10px;
 }
 
 .rectangle {
-    top          : -20vw;
-    width        : 25vw;
-    height       : 25vw;
-    right        : 20vw;
+    top: -20vw;
+    width: 25vw;
+    height: 25vw;
+    right: 20vw;
     border-radius: 10px;
-    background   : white;
-    animation    : Rectangle 10s infinite;
+    background: white;
+    animation: Rectangle 10s infinite;
 }
 
 .linkContainer {
-    display        : flex;
+    display: flex;
     justify-content: flex-end;
 
     .link {
         font-size: 25px;
-        display  : inline-flex;
+        display: inline-flex;
     }
 }
 
 .passwordIcon {
     font-size: 10px;
-    color    : "#AAAAAA"
+    color: "#AAAAAA";
 }
 
 @keyframes Square {
