@@ -364,6 +364,24 @@ export type TagWork = {
     workId: Scalars["Int"]
 }
 
+export type LastWorksQueryVariables = Exact<{
+    count?: Maybe<Scalars["PaginationAmount"]>
+}>
+
+export type LastWorksQuery = { __typename?: "Queries" } & {
+    works?: Maybe<
+        { __typename?: "WorkConnection" } & {
+            nodes?: Maybe<
+                Array<
+                    Maybe<
+                        { __typename?: "Work" } & Pick<Work, "id" | "title" | "shortDescription" | "date" | "imgPath">
+                    >
+                >
+            >
+        }
+    >
+}
+
 export type WorksQueryVariables = Exact<{ [key: string]: never }>
 
 export type WorksQuery = { __typename?: "Queries" } & {
@@ -380,6 +398,49 @@ export type WorksQuery = { __typename?: "Queries" } & {
     >
 }
 
+export const LastWorksDocument = gql`
+    query lastWorks($count: PaginationAmount) {
+        works(first: $count) {
+            nodes {
+                id
+                title
+                shortDescription
+                date
+                imgPath
+            }
+        }
+    }
+`
+
+/**
+ * __useLastWorksQuery__
+ *
+ * To run a query within a React component, call `useLastWorksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLastWorksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLastWorksQuery({
+ *   variables: {
+ *      count: // value for 'count'
+ *   },
+ * });
+ */
+export function useLastWorksQuery(
+    baseOptions?: ApolloReactHooks.QueryHookOptions<LastWorksQuery, LastWorksQueryVariables>
+) {
+    return ApolloReactHooks.useQuery<LastWorksQuery, LastWorksQueryVariables>(LastWorksDocument, baseOptions)
+}
+export function useLastWorksLazyQuery(
+    baseOptions?: ApolloReactHooks.LazyQueryHookOptions<LastWorksQuery, LastWorksQueryVariables>
+) {
+    return ApolloReactHooks.useLazyQuery<LastWorksQuery, LastWorksQueryVariables>(LastWorksDocument, baseOptions)
+}
+export type LastWorksQueryHookResult = ReturnType<typeof useLastWorksQuery>
+export type LastWorksLazyQueryHookResult = ReturnType<typeof useLastWorksLazyQuery>
+export type LastWorksQueryResult = ApolloReactCommon.QueryResult<LastWorksQuery, LastWorksQueryVariables>
 export const WorksDocument = gql`
     query works {
         works {

@@ -1,0 +1,11 @@
+query lastWorks($count: PaginationAmount) {
+    works(first: $count) {
+        nodes {
+            id
+            title
+            shortDescription
+            date
+            imgPath
+        }
+    }
+}

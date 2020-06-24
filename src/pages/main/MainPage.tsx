@@ -6,15 +6,12 @@ import { getDaysToEnd } from "../../helpers/dateHelpers"
 import Card from "../../components/cards/Card"
 import Line from "../../components/cards/Line"
 import TagList from "../../components/tags/TagList"
-import ProjectCard from "../../components/cards/ProjectCard"
 import LocalLink from "../../components/links/LocalLink"
 import GlobalLink from "../../components/links/GlobalLink"
 import { ArrowRightOutlined } from "@ant-design/icons"
 import FadePage from "../../components/fade/FadePage"
 import Contacts from "../../components/avatar/Contacts"
-
-import img1 from "../../assets/min.png"
-import img2 from "../../assets/min2.png"
+import LastProjectCards from "../../components/cards/LastProjectCards"
 import webSvg from "../../assets/web.svg"
 
 const { Title, Paragraph } = Typography
@@ -27,7 +24,7 @@ const MainPage: React.FC = () => {
                 <div className={`${styles.figure} ${styles.square}`} />
                 <div className={`${styles.figure} ${styles.circle}`} />
                 <div className={`${styles.figure} ${styles.rectangle}`} />
-                <div className={styles.wrapperPage}>
+                <div className="wrapper-page">
                     <section className={styles.mainSectionWrapper}>
                         <div className={styles.leftCol}>
                             <img src={webSvg} alt="Веб" />
@@ -47,12 +44,18 @@ const MainPage: React.FC = () => {
 
                     <section className={styles.infoSectionWrapper}>
                         <Row justify="space-between">
-                            <Col span={6}>
+                            <Col
+                                xl={{ span: 6, offset: 0 }}
+                                lg={{ span: 10, offset: 0 }}
+                                md={{ span: 12, offset: 6 }}
+                                sm={{ span: 16, offset: 4 }}
+                                xs={{ span: 24, offset: 0 }}
+                            >
                                 <Avatar withDesc={true} />
                             </Col>
-                            <Col span={16}>
-                                <Row justify="space-between">
-                                    <Col span={11}>
+                            <Col xl={{ span: 16 }} lg={{ span: 12 }} md={{ span: 20, offset: 2 }}>
+                                <Row justify="space-between" gutter={[0, 48]}>
+                                    <Col xl={{ span: 11 }} lg={{ span: 24 }}>
                                         <Title level={2}>Обо мне</Title>
                                         <Paragraph>
                                             Привет! Я&nbsp;веб-разработчик. Моя сфера деятельности&nbsp;&mdash; это все,
@@ -66,7 +69,7 @@ const MainPage: React.FC = () => {
                                             и&nbsp;стараюсь постоянно развиваться в&nbsp;своей сфере.
                                         </Paragraph>
                                     </Col>
-                                    <Col span={11}>
+                                    <Col xl={{ span: 11 }} lg={{ span: 24 }}>
                                         <Title level={2}>Образование</Title>
                                         <Paragraph>
                                             Среднее (полное) <br />
@@ -83,7 +86,7 @@ const MainPage: React.FC = () => {
                                     </Col>
                                 </Row>
                                 <Row justify="space-between" className="mt-60">
-                                    <Col span={11}>
+                                    <Col xl={{ span: 11 }} lg={{ span: 24 }}>
                                         <Title level={2}>Навыки</Title>
                                         <Card className="mt-40 p-40">
                                             <Title level={4}>Frontend</Title>
@@ -110,7 +113,7 @@ const MainPage: React.FC = () => {
                                             />
                                         </Card>
                                     </Col>
-                                    <Col span={11}>
+                                    <Col xl={{ span: 11 }} lg={{ span: 24 }}>
                                         <Title
                                             level={2}
                                             style={{
@@ -149,31 +152,8 @@ const MainPage: React.FC = () => {
 
                     <section>
                         <Title level={2}>Последние проекты</Title>
-                        <Row justify="space-between" className="mt-40">
-                            <Col span={11}>
-                                <ProjectCard
-                                    title="Доступный ремонт"
-                                    date="28 января 2020 г."
-                                    img={img1}
-                                    route="/"
-                                    desc="
-                                    Красивый и современный сайт для компании, предоставляющей услуги по ремонту жилых
-                                    помещений и офисов. На сайте можно бесплатно составить смету, а также оплатить услуги онлайн."
-                                />
-                            </Col>
-                            <Col span={11}>
-                                <ProjectCard
-                                    title="Система нормоконтроля студенческих работ"
-                                    date="8 июня 2020 г."
-                                    img={img2}
-                                    route="/"
-                                    desc="
-                                        Количество студентов за последние годы выросло во много раз, из-за этого сотрудники 
-                                        кафедры стали тратить много времени на проверку студенческих работ соответствию нормоконтролю. 
-                                        Появилась потребность в автоматизации процесса проверки."
-                                />
-                            </Col>
-                        </Row>
+                        <LastProjectCards count={2} className="mt-40" />
+
                         <div className={styles.linkContainer}>
                             <LocalLink to="/portfolio" className={styles.link}>
                                 Все работы <ArrowRightOutlined />

@@ -37,8 +37,13 @@ const Navbar: React.FC<propTypes> = (props) => {
                     ×
                 </div>
 
-                <Row style={{ width: "100vw", marginTop: "60px" }} justify="space-around">
-                    <Col span={8}>
+                <Row style={{ width: "100vw", marginTop: "60px" }} justify="space-around" gutter={[0, 40]}>
+                    <Col
+                        lg={{ span: 9, order: 1 }}
+                        md={{ span: 16, order: 2 }}
+                        sm={{ span: 20, order: 2 }}
+                        xs={{ span: 24, order: 2 }}
+                    >
                         <Title level={1} style={titleStyles}>
                             Тайный бункер
                         </Title>
@@ -56,7 +61,12 @@ const Navbar: React.FC<propTypes> = (props) => {
                             </Space>
                         </form>
                     </Col>
-                    <Col span={8}>
+                    <Col
+                        lg={{ span: 9, order: 2 }}
+                        md={{ span: 16, order: 1 }}
+                        sm={{ span: 20, order: 2 }}
+                        xs={{ span: 24, order: 2 }}
+                    >
                         <Title level={1} style={titleStyles}>
                             Навигация
                         </Title>
