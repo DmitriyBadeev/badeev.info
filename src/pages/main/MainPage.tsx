@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "./MainPage.module.less"
-import { Row, Col, Typography } from "antd"
+import { Row, Col, Typography, Button } from "antd"
 import Avatar from "../../components/avatar/Avatar"
 import { getDaysToEnd } from "../../helpers/dateHelpers"
 import Card from "../../components/cards/Card"
@@ -8,8 +8,10 @@ import Line from "../../components/cards/Line"
 import TagList from "../../components/tags/TagList"
 import ProjectCard from "../../components/cards/ProjectCard"
 import LocalLink from "../../components/links/LocalLink"
+import GlobalLink from "../../components/links/GlobalLink"
 import { ArrowRightOutlined } from "@ant-design/icons"
 import FadePage from "../../components/fade/FadePage"
+import Contacts from "../../components/avatar/Contacts"
 
 import img1 from "../../assets/min.png"
 import img2 from "../../assets/min2.png"
@@ -33,8 +35,13 @@ const MainPage: React.FC = () => {
                         <div className={styles.rightCol}>
                             <h2 className={styles.subMainTitle}>Веб-разработчик</h2>
                             <h1 className={styles.mainTitle}>
-                                Дмитрий <br /> Бадеев
+                                Дмитрий
+                                <br />
+                                Бадеев
                             </h1>
+                            <Button size="large" type="primary" className={styles.btn}>
+                                <LocalLink to="/portfolio">Портфолио</LocalLink>
+                            </Button>
                         </div>
                     </section>
 
@@ -69,7 +76,7 @@ const MainPage: React.FC = () => {
                                         <Paragraph>
                                             Высшее (Бакалавр) <br />
                                             УрФУ им. Ельцина, ИРИТ-РтФ <br />
-                                            специальность “Программная инженерия” <br />
+                                            специальность «Программная инженерия» <br />
                                             2018–2022 гг.
                                         </Paragraph>
                                         <Paragraph type="secondary">До конца {getDaysToEnd()}</Paragraph>
@@ -171,6 +178,19 @@ const MainPage: React.FC = () => {
                             <LocalLink to="/portfolio" className={styles.link}>
                                 Все работы <ArrowRightOutlined />
                             </LocalLink>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div className={styles.mainContacts}>
+                            <div className={styles.innerContacts}>
+                                <div className={styles.mainMail}>
+                                    <GlobalLink to="mailto:mail@badeev.info">mail@badeev.info</GlobalLink>
+                                </div>
+                                <div className={styles.mainOther}>
+                                    <Contacts SizeInPixel={50} />
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>

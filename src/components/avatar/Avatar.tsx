@@ -4,8 +4,7 @@ import { Typography, Descriptions } from "antd"
 import img from "../../assets/avatar.png"
 import { getAge } from "../../helpers/dateHelpers"
 import GlobalLink from "../../components/links/GlobalLink"
-import vk from "../../assets/vk.svg"
-import github from "../../assets/github.svg"
+import Contacts from "./Contacts"
 
 const { Paragraph, Title } = Typography
 
@@ -43,12 +42,7 @@ const AvatarDesc: React.FC = () => {
                     <GlobalLink to="tel:+79195967515">+7&thinsp;919&thinsp;596-75-15</GlobalLink>
                 </Descriptions.Item>
                 <Descriptions.Item label="Другое">
-                    <a href="https://vk.com/d_503_45" rel="noopener noreferrer" target="_blank">
-                        <img src={vk} alt="Вконтакте" className={styles.iconLink} />
-                    </a>
-                    <a href="https://github.com/DmitriyBadeev" rel="noopener noreferrer" target="_blank">
-                        <img src={github} alt="GitHub" className={styles.iconLink} />
-                    </a>
+                    <Contacts />
                 </Descriptions.Item>
             </Descriptions>
         </div>

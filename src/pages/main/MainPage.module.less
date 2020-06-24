@@ -10,6 +10,9 @@
 
     .rightCol {
         align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
 
         .subMainTitle {
             text-align: right;
@@ -26,6 +29,11 @@
             font-weight: 400;
             margin: 0;
             text-align: right;
+        }
+
+        .btn {
+            width: 15vw;
+            margin-top: 20px;
         }
     }
 
@@ -45,6 +53,10 @@
     transition: all 0.3;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.07);
     background: white;
+
+    @media screen and (max-width: 1200px) {
+        display: none;
+    }
 }
 
 .square {
@@ -88,6 +100,29 @@
 .passwordIcon {
     font-size: 10px;
     color: "#AAAAAA";
+}
+
+.mainContacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    margin-top: 100px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    .innerContacts {
+        .mainMail {
+            font-size: 6vw;
+        }
+
+        .mainOther {
+            display: flex;
+            justify-content: center;
+            font-size: 2vw;
+            margin-top: 30px;
+        }
+    }
 }
 
 @keyframes Square {
