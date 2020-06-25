@@ -1,0 +1,19 @@
+query workById($id: Int!) {
+    worksById(id: $id) {
+        id
+        title
+        date
+        imgPath
+        html
+        link
+        task
+        authors {
+            name
+            link
+            role
+        }
+        tags {
+            tagId
+        }
+    }
+}
