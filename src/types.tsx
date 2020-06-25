@@ -22,6 +22,7 @@ export type Queries = {
     authors?: Maybe<Array<Maybe<Author>>>
     tags?: Maybe<Array<Maybe<Tag>>>
     works?: Maybe<WorkConnection>
+    worksById?: Maybe<Work>
 }
 
 export type QueriesAuthorsArgs = {
@@ -38,6 +39,10 @@ export type QueriesWorksArgs = {
     first?: Maybe<Scalars["PaginationAmount"]>
     last?: Maybe<Scalars["PaginationAmount"]>
     where?: Maybe<WorkFilter>
+}
+
+export type QueriesWorksByIdArgs = {
+    id: Scalars["Int"]
 }
 
 export type Mutations = {
@@ -180,6 +185,18 @@ export type WorkFilter = {
     title_starts_with?: Maybe<Scalars["String"]>
 }
 
+/** A connection to a list of items. */
+export type WorkConnection = {
+    __typename?: "WorkConnection"
+    /** A list of edges. */
+    edges?: Maybe<Array<WorkEdge>>
+    /** A flattened list of the nodes. */
+    nodes?: Maybe<Array<Maybe<Work>>>
+    /** Information to aid in pagination. */
+    pageInfo: PageInfo
+    totalCount: Scalars["Int"]
+}
+
 export type TagFilter = {
     AND?: Maybe<Array<TagFilter>>
     description?: Maybe<Scalars["String"]>
@@ -276,18 +293,6 @@ export type AuthorFilter = {
     workId_not_lte?: Maybe<Scalars["Int"]>
 }
 
-/** A connection to a list of items. */
-export type WorkConnection = {
-    __typename?: "WorkConnection"
-    /** A list of edges. */
-    edges?: Maybe<Array<WorkEdge>>
-    /** A flattened list of the nodes. */
-    nodes?: Maybe<Array<Maybe<Work>>>
-    /** Information to aid in pagination. */
-    pageInfo: PageInfo
-    totalCount: Scalars["Int"]
-}
-
 /** Information about pagination in a connection. */
 export type PageInfo = {
     __typename?: "PageInfo"
@@ -338,13 +343,6 @@ export type CreateWorkInput = {
     title?: Maybe<Scalars["String"]>
 }
 
-export type CreateAuthorInput = {
-    link?: Maybe<Scalars["String"]>
-    name?: Maybe<Scalars["String"]>
-    role?: Maybe<Scalars["String"]>
-    workId: Scalars["Int"]
-}
-
 export type CreateTagInput = {
     description?: Maybe<Scalars["String"]>
     title?: Maybe<Scalars["String"]>
@@ -361,6 +359,13 @@ export type TagWork = {
     tag?: Maybe<Tag>
     tagId: Scalars["Int"]
     work?: Maybe<Work>
+    workId: Scalars["Int"]
+}
+
+export type CreateAuthorInput = {
+    link?: Maybe<Scalars["String"]>
+    name?: Maybe<Scalars["String"]>
+    role?: Maybe<Scalars["String"]>
     workId: Scalars["Int"]
 }
 

@@ -12,12 +12,12 @@ type propTypes = {
     title?: Maybe<string>
     date: string
     desc?: Maybe<string>
-    route: string
+    id?: Maybe<number>
 }
 
 const ProjectCard: React.FC<propTypes> = (props) => {
     return (
-        <Link to={props.route} className={styles.link}>
+        <Link to={`portfolio/${props.id}`} className={styles.link}>
             <Card>
                 <ImageCard height={65} img={props.img} alt={props.title} />
             </Card>
