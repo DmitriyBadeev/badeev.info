@@ -22,8 +22,12 @@ jobs:
               run: |
                   npm install
                   npm run build --if-present
+
             - name: List output files
               run: ls
+
+            - name: reset package-lock.json
+              run: git checkout package-lock.json
 
             - name: FTP-Deploy-Action
               uses: SamKirkland/FTP-Deploy-Action@3.1.1
@@ -31,3 +35,4 @@ jobs:
                   ftp-server: ftp://31.31.196.80/httpdocs/badeev.info/
                   ftp-username: ${{ secrets.FTP_USERNAME }}
                   ftp-password: ${{ secrets.FTP_PASSWORD }}
+                  local-dir: build
