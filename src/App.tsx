@@ -8,7 +8,7 @@ import PortfolioPage from "./pages/portfolio/PortfolioPage"
 import WorkPage from "./pages/work/WorkPage"
 
 const client = new ApolloClient({
-    uri: "http://api.badeev.info/graphql?",
+    uri: "https://api.badeev.info/graphql?",
 })
 
 const App: React.FC = () => {
