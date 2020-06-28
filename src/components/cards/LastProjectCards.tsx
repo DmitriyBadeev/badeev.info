@@ -48,8 +48,8 @@ const LastProjectCards: React.FC<propTypes> = (props) => {
             {loading ? (
                 <Loading />
             ) : (
-                <FadePage>
-                    <Row justify="space-between" gutter={[0, 50]} className={props.className}>
+                <FadePage className={props.className}>
+                    <Row justify="space-between" gutter={[0, 50]}>
                         {getWorks() || <Title>Работы пропали</Title>}
                     </Row>
                 </FadePage>

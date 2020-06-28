@@ -5,9 +5,8 @@ import LastProjectCards from "../../components/cards/LastProjectCards"
 const PortfolioPage: React.FC = () => {
     return (
         <FadePage>
-            <div className="mt-40"></div>
             <div className="wrapper-page">
-                <LastProjectCards count={5} />
+                <LastProjectCards count={5} className="mt-30" />
             </div>
         </FadePage>
     )

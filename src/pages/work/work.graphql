@@ -1,5 +1,5 @@
 query workById($id: Int!) {
-    worksById(id: $id) {
+    workById(id: $id) {
         id
         title
         date

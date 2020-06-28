@@ -21,8 +21,9 @@ export type Queries = {
   __typename?: 'Queries';
   authors?: Maybe<Array<Maybe<Author>>>;
   tags?: Maybe<Array<Maybe<Tag>>>;
+  tagsByWorkId?: Maybe<Array<Maybe<Tag>>>;
+  workById?: Maybe<Work>;
   works?: Maybe<WorkConnection>;
-  worksById?: Maybe<Work>;
 };
 
 
@@ -36,17 +37,22 @@ export type QueriesTagsArgs = {
 };
 
 
+export type QueriesTagsByWorkIdArgs = {
+  workId: Scalars['Int'];
+};
+
+
+export type QueriesWorkByIdArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type QueriesWorksArgs = {
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['PaginationAmount']>;
   last?: Maybe<Scalars['PaginationAmount']>;
   where?: Maybe<WorkFilter>;
-};
-
-
-export type QueriesWorksByIdArgs = {
-  id: Scalars['Int'];
 };
 
 export type Mutations = {
@@ -396,6 +402,19 @@ export type LastWorksQuery = (
   )> }
 );
 
+export type TagsByWorkIdQueryVariables = Exact<{
+  workId: Scalars['Int'];
+}>;
+
+
+export type TagsByWorkIdQuery = (
+  { __typename?: 'Queries' }
+  & { tagsByWorkId?: Maybe<Array<Maybe<(
+    { __typename?: 'Tag' }
+    & Pick<Tag, 'id' | 'title'>
+  )>>> }
+);
+
 export type WorksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -417,7 +436,7 @@ export type WorkByIdQueryVariables = Exact<{
 
 export type WorkByIdQuery = (
   { __typename?: 'Queries' }
-  & { worksById?: Maybe<(
+  & { workById?: Maybe<(
     { __typename?: 'Work' }
     & Pick<Work, 'id' | 'title' | 'date' | 'imgPath' | 'html' | 'link' | 'task'>
     & { authors?: Maybe<Array<Maybe<(
@@ -470,6 +489,40 @@ export function useLastWorksLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHo
 export type LastWorksQueryHookResult = ReturnType<typeof useLastWorksQuery>;
 export type LastWorksLazyQueryHookResult = ReturnType<typeof useLastWorksLazyQuery>;
 export type LastWorksQueryResult = ApolloReactCommon.QueryResult<LastWorksQuery, LastWorksQueryVariables>;
+export const TagsByWorkIdDocument = gql`
+    query tagsByWorkId($workId: Int!) {
+  tagsByWorkId(workId: $workId) {
+    id
+    title
+  }
+}
+    `;
+
+/**
+ * __useTagsByWorkIdQuery__
+ *
+ * To run a query within a React component, call `useTagsByWorkIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTagsByWorkIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTagsByWorkIdQuery({
+ *   variables: {
+ *      workId: // value for 'workId'
+ *   },
+ * });
+ */
+export function useTagsByWorkIdQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TagsByWorkIdQuery, TagsByWorkIdQueryVariables>) {
+        return ApolloReactHooks.useQuery<TagsByWorkIdQuery, TagsByWorkIdQueryVariables>(TagsByWorkIdDocument, baseOptions);
+      }
+export function useTagsByWorkIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TagsByWorkIdQuery, TagsByWorkIdQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<TagsByWorkIdQuery, TagsByWorkIdQueryVariables>(TagsByWorkIdDocument, baseOptions);
+        }
+export type TagsByWorkIdQueryHookResult = ReturnType<typeof useTagsByWorkIdQuery>;
+export type TagsByWorkIdLazyQueryHookResult = ReturnType<typeof useTagsByWorkIdLazyQuery>;
+export type TagsByWorkIdQueryResult = ApolloReactCommon.QueryResult<TagsByWorkIdQuery, TagsByWorkIdQueryVariables>;
 export const WorksDocument = gql`
     query works {
   works {
@@ -510,7 +563,7 @@ export type WorksLazyQueryHookResult = ReturnType<typeof useWorksLazyQuery>;
 export type WorksQueryResult = ApolloReactCommon.QueryResult<WorksQuery, WorksQueryVariables>;
 export const WorkByIdDocument = gql`
     query workById($id: Int!) {
-  worksById(id: $id) {
+  workById(id: $id) {
     id
     title
     date

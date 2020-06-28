@@ -1,0 +1,6 @@
+query tagsByWorkId($workId: Int!) {
+    tagsByWorkId(workId: $workId) {
+        id
+        title
+    }
+}
