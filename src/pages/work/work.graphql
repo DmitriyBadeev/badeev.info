@@ -8,12 +8,10 @@ query workById($id: Int!) {
         link
         task
         authors {
+            id
             name
             link
             role
-        }
-        tags {
-            tagId
         }
     }
 }

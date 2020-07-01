@@ -1,17 +1,26 @@
-import React from "react"
+import React, { CSSProperties } from "react"
 import { useParams } from "react-router-dom"
 import FadePage from "../../components/fade/FadePage"
 import { useWorkByIdQuery } from "../../types"
 import Loading from "../../components/loading/Loading"
-import { Typography, Row } from "antd"
+import { Typography, Row, Space, Col } from "antd"
 import WorkTagList from "../../components/tags/WorkTagList"
 import parse from "html-react-parser"
+import styles from "./WorkPage.module.less"
+import { getStringDate } from "../../helpers/dateHelpers"
+import GlobalLink from "../../components/links/GlobalLink"
+import Line from "../../components/cards/Line"
+import LastProjectCards from "../../components/cards/LastProjectCards"
 
 type paramsTypes = {
     id: string
 }
 
 const { Title, Paragraph } = Typography
+
+const textSize: CSSProperties = {
+    fontSize: "1.5rem",
+}
 
 const WorkPage: React.FC = () => {
     let { id } = useParams<paramsTypes>()
@@ -28,6 +37,30 @@ const WorkPage: React.FC = () => {
         }
     }
 
+    const renderAuthors = () => {
+        const authors = work?.authors?.map((el) => {
+            if (el?.link)
+                return (
+                    <div key={el.id}>
+                        <GlobalLink to={el?.link}>{el.name}</GlobalLink>: {el.role}
+                    </div>
+                )
+            else if (el) {
+                return (
+                    <div key={el.id}>
+                        {el?.name}: {el?.role}
+                    </div>
+                )
+            }
+        })
+
+        return (
+            <Space direction="vertical" style={{ textAlign: "center", fontSize: "20px" }}>
+                {authors}
+            </Space>
+        )
+    }
+
     const work = data?.workById
 
     return loading ? (
@@ -38,15 +71,43 @@ const WorkPage: React.FC = () => {
                 <Row justify="center">
                     <WorkTagList workId={Number(id)} />
                 </Row>
+                <div className={styles.divider} />
                 <Title level={2} style={{ textAlign: "center" }}>
                     {work?.title}
                 </Title>
-                <Paragraph style={{ fontSize: "1.5rem", width: "60vw", margin: "30px 0 30px 10vw" }}>
+                <Paragraph style={{ ...textSize, width: "60vw", margin: "30px 0 30px 10vw" }}>
                     <em>Задача:</em> {work?.task}
                 </Paragraph>
             </div>
 
             <div className="content">{renderHtml()}</div>
+            <div className={styles.afterWorkDesc}>
+                <Paragraph style={textSize}>
+                    <em>Сделано {getStringDate(work?.date)}</em>
+                </Paragraph>
+                {work?.authors?.length !== 0 && (
+                    <>
+                        <Paragraph style={textSize} className="mt-20">
+                            <em>Участвовали в работе</em>
+                        </Paragraph>
+                        {renderAuthors()}
+                    </>
+                )}
+            </div>
+
+            {work?.link && (
+                <Paragraph className="mt-40" style={{ ...textSize, textAlign: "center" }}>
+                    <GlobalLink to={work?.link}>{work?.link}</GlobalLink>
+                </Paragraph>
+            )}
+
+            <Row className="wrapper-page">
+                <Col span={24}>
+                    <Line className="mt-40 mb-40" />
+                    <Title level={2}>Ещё</Title>
+                </Col>
+                <LastProjectCards count={2} className="mt-20" />
+            </Row>
         </FadePage>
     )
 }

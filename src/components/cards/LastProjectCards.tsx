@@ -30,12 +30,12 @@ const LastProjectCards: React.FC<propTypes> = (props) => {
         if (works)
             return works.map((work) => {
                 return (
-                    <Col lg={11}>
+                    <Col lg={11} key={work?.id}>
                         <ProjectCard
+                            id={work?.id}
                             title={work?.title}
                             date={getStringDate(work?.date)}
                             img={work?.imgPath}
-                            id={work?.id}
                             desc={work?.shortDescription}
                         />
                     </Col>

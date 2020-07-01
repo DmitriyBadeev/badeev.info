@@ -17,7 +17,7 @@ type propTypes = {
 
 const ProjectCard: React.FC<propTypes> = (props) => {
     return (
-        <Link to={`portfolio/${props.id}`} className={styles.link}>
+        <Link to={`/portfolio/${props.id}`} className={styles.link}>
             <Card>
                 <ImageCard height={65} img={props.img} alt={props.title} />
             </Card>
