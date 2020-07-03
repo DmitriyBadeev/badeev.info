@@ -17,15 +17,15 @@ const App: React.FC = () => {
         <ApolloProvider client={client}>
             <BrowserRouter>
                 <Shared>
-                    <Switch>
-                        <ScrollToTop>
-                            <Route path="/" component={MainPage} exact />
+                    <ScrollToTop>
+                        <Switch>
+                            <Route exact path="/" component={MainPage} />
                             <Route path="/portfolio" component={PortfolioPage} exact />
                             <Route path="/portfolio/:id" component={WorkPage} exact />
-                            <Route path="/404" component={NotFound} exact />
+                            <Route path="/404" component={NotFound} />
                             <Route component={RedirectToNotFound} />
-                        </ScrollToTop>
-                    </Switch>
+                        </Switch>
+                    </ScrollToTop>
                 </Shared>
             </BrowserRouter>
         </ApolloProvider>
