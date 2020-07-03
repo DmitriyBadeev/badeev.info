@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react"
+import React, { CSSProperties, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import FadePage from "../../components/fade/FadePage"
 import { useWorkByIdQuery } from "../../types"
@@ -30,6 +30,12 @@ const WorkPage: React.FC = () => {
             id: Number(id),
         },
     })
+
+    useEffect(() => {
+        if (!loading && data?.workById === null) {
+            window.location.replace("/404")
+        }
+    }, [loading])
 
     const renderHtml = () => {
         if (work != null && work.html !== null) {
@@ -75,9 +81,13 @@ const WorkPage: React.FC = () => {
                 <Title level={2} style={{ textAlign: "center" }}>
                     {work?.title}
                 </Title>
-                <Paragraph style={{ ...textSize, width: "60vw", margin: "30px 0 30px 10vw" }}>
-                    <em>Задача:</em> {work?.task}
-                </Paragraph>
+                <Row className="mt-30">
+                    <Col lg={{ offset: 3, span: 16 }}>
+                        <Paragraph style={{ ...textSize }} className={styles.paragraph}>
+                            <em>Задача:</em> {work?.task}
+                        </Paragraph>
+                    </Col>
+                </Row>
             </div>
 
             <div className="content">{renderHtml()}</div>
