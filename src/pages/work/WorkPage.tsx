@@ -35,7 +35,7 @@ const WorkPage: React.FC = () => {
         if (!loading && data?.workById === null) {
             window.location.replace("/404")
         }
-    }, [loading])
+    }, [loading, data])
 
     const renderHtml = () => {
         if (work != null && work.html !== null) {

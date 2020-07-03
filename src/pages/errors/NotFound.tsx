@@ -1,6 +1,6 @@
 import React from "react"
 import FadePage from "../../components/fade/FadePage"
-import { Empty, Space, Row } from "antd"
+import { Empty, Row } from "antd"
 
 const NotFound: React.FC = () => {
     return (
