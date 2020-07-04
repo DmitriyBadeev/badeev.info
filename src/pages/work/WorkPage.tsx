@@ -81,7 +81,7 @@ const WorkPage: React.FC = () => {
                 <Title level={2} style={{ textAlign: "center" }}>
                     {work?.title}
                 </Title>
-                <Row className="mt-30">
+                <Row className="mt-30 mb-50">
                     <Col lg={{ offset: 3, span: 16 }}>
                         <Paragraph style={{ ...textSize }} className={styles.paragraph}>
                             <em>Задача:</em> {work?.task}
@@ -106,7 +106,16 @@ const WorkPage: React.FC = () => {
             </div>
 
             {work?.link && (
-                <Paragraph className="mt-40" style={{ ...textSize, textAlign: "center" }}>
+                <Paragraph
+                    className="mt-40"
+                    style={{
+                        ...textSize,
+                        textAlign: "center",
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                        padding: "0 10px",
+                    }}
+                >
                     <GlobalLink to={work?.link}>{work?.link}</GlobalLink>
                 </Paragraph>
             )}
