@@ -6,7 +6,7 @@ const PortfolioPage: React.FC = () => {
     return (
         <FadePage>
             <div className="wrapper-page">
-                <LastProjectCards count={5} className="mt-30" />
+                <LastProjectCards count={12} className="mt-30" />
             </div>
         </FadePage>
     )
