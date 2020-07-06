@@ -9,3 +9,10 @@ query works {
         }
     }
 }
+
+query tags {
+    tags {
+        id
+        title
+    }
+}

@@ -75,7 +75,9 @@ const WorkPage: React.FC = () => {
         <FadePage>
             <div className="wrapper-page">
                 <Row justify="center">
-                    <WorkTagList workId={Number(id)} />
+                    <Col lg={18}>
+                        <WorkTagList workId={Number(id)} />
+                    </Col>
                 </Row>
                 <div className={styles.divider} />
                 <Title level={2} style={{ textAlign: "center" }}>

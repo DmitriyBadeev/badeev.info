@@ -4,7 +4,6 @@ import TagList from "./TagList"
 import LocalLoading from "../loading/LocalLoading"
 
 type typeProps = {
-    className?: string
     workId: number
 }
 
@@ -15,10 +14,11 @@ const WorkTagList: React.FC<typeProps> = (props) => {
         },
     })
 
-    const tags = data?.tagsByWorkId?.map((t) => t?.title)
+    if (error) return <pre>{error}</pre>
 
-    if (tags) return loading ? <LocalLoading /> : <TagList tagList={tags} style={{ margin: "0 -5px 10px" }} />
-    else return <pre>{error}</pre>
+    if (loading) return <LocalLoading />
+
+    return <TagList tagList={data?.tagsByWorkId || []} style={{ margin: "0 -5px 10px" }} />
 }
 
 export default WorkTagList

@@ -56,6 +56,12 @@ export type Mutations = {
     createAuthor?: Maybe<Author>
     createTag?: Maybe<Tag>
     createWork?: Maybe<Work>
+    deleteAuthor?: Maybe<Author>
+    deleteTag?: Maybe<Tag>
+    deleteWork?: Maybe<Work>
+    updateAuthor?: Maybe<Author>
+    updateTag?: Maybe<Tag>
+    updateWork?: Maybe<Work>
 }
 
 export type MutationsConnectTagAndWorkArgs = {
@@ -72,6 +78,30 @@ export type MutationsCreateTagArgs = {
 
 export type MutationsCreateWorkArgs = {
     inputWork?: Maybe<CreateWorkInput>
+}
+
+export type MutationsDeleteAuthorArgs = {
+    authorId: Scalars["Int"]
+}
+
+export type MutationsDeleteTagArgs = {
+    tagId: Scalars["Int"]
+}
+
+export type MutationsDeleteWorkArgs = {
+    workId: Scalars["Int"]
+}
+
+export type MutationsUpdateAuthorArgs = {
+    inputAuthor?: Maybe<UpdateAuthorInput>
+}
+
+export type MutationsUpdateTagArgs = {
+    inputTag?: Maybe<UpdateTagInput>
+}
+
+export type MutationsUpdateWorkArgs = {
+    inputWork?: Maybe<UpdateWorkInput>
 }
 
 export type Work = {
@@ -348,6 +378,17 @@ export type CreateWorkInput = {
     title?: Maybe<Scalars["String"]>
 }
 
+export type UpdateWorkInput = {
+    date?: Maybe<Scalars["DateTime"]>
+    html?: Maybe<Scalars["String"]>
+    id: Scalars["Int"]
+    imgPath?: Maybe<Scalars["String"]>
+    link?: Maybe<Scalars["String"]>
+    shortDescription?: Maybe<Scalars["String"]>
+    task?: Maybe<Scalars["String"]>
+    title?: Maybe<Scalars["String"]>
+}
+
 export type CreateTagInput = {
     description?: Maybe<Scalars["String"]>
     title?: Maybe<Scalars["String"]>
@@ -356,6 +397,12 @@ export type CreateTagInput = {
 export type ConnectTagWorkInput = {
     tagId: Scalars["Int"]
     workId: Scalars["Int"]
+}
+
+export type UpdateTagInput = {
+    description?: Maybe<Scalars["String"]>
+    id: Scalars["Int"]
+    title?: Maybe<Scalars["String"]>
 }
 
 export type TagWork = {
@@ -372,6 +419,14 @@ export type CreateAuthorInput = {
     name?: Maybe<Scalars["String"]>
     role?: Maybe<Scalars["String"]>
     workId: Scalars["Int"]
+}
+
+export type UpdateAuthorInput = {
+    id: Scalars["Int"]
+    link?: Maybe<Scalars["String"]>
+    name?: Maybe<Scalars["String"]>
+    role?: Maybe<Scalars["String"]>
+    workId?: Maybe<Scalars["Int"]>
 }
 
 export type LastWorksQueryVariables = Exact<{
@@ -414,6 +469,12 @@ export type WorksQuery = { __typename?: "Queries" } & {
             >
         }
     >
+}
+
+export type TagsQueryVariables = Exact<{ [key: string]: never }>
+
+export type TagsQuery = { __typename?: "Queries" } & {
+    tags?: Maybe<Array<Maybe<{ __typename?: "Tag" } & Pick<Tag, "id" | "title">>>>
 }
 
 export type WorkByIdQueryVariables = Exact<{
@@ -496,6 +557,7 @@ export const TagsByWorkIdDocument = gql`
  *   },
  * });
  */
+
 export function useTagsByWorkIdQuery(
     baseOptions?: ApolloReactHooks.QueryHookOptions<TagsByWorkIdQuery, TagsByWorkIdQueryVariables>
 ) {
@@ -552,6 +614,39 @@ export function useWorksLazyQuery(
 export type WorksQueryHookResult = ReturnType<typeof useWorksQuery>
 export type WorksLazyQueryHookResult = ReturnType<typeof useWorksLazyQuery>
 export type WorksQueryResult = ApolloReactCommon.QueryResult<WorksQuery, WorksQueryVariables>
+export const TagsDocument = gql`
+    query tags {
+        tags {
+            id
+            title
+        }
+    }
+`
+
+/**
+ * __useTagsQuery__
+ *
+ * To run a query within a React component, call `useTagsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTagsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTagsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTagsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TagsQuery, TagsQueryVariables>) {
+    return ApolloReactHooks.useQuery<TagsQuery, TagsQueryVariables>(TagsDocument, baseOptions)
+}
+export function useTagsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TagsQuery, TagsQueryVariables>) {
+    return ApolloReactHooks.useLazyQuery<TagsQuery, TagsQueryVariables>(TagsDocument, baseOptions)
+}
+export type TagsQueryHookResult = ReturnType<typeof useTagsQuery>
+export type TagsLazyQueryHookResult = ReturnType<typeof useTagsLazyQuery>
+export type TagsQueryResult = ApolloReactCommon.QueryResult<TagsQuery, TagsQueryVariables>
 export const WorkByIdDocument = gql`
     query workById($id: Int!) {
         workById(id: $id) {
@@ -571,6 +666,7 @@ export const WorkByIdDocument = gql`
         }
     }
 `
+
 /**
  * __useWorkByIdQuery__
  *
