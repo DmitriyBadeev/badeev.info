@@ -18,7 +18,7 @@ const AllTagList: React.FC<propTypes> = (props) => {
     return (
         <TagList
             tagList={data?.tags || []}
-            style={{ margin: "0 -5px 2rem" }}
+            style={{ margin: "0 -5px 2rem", justifyContent: "center" }}
             activeTagsIds={props.activeTagsIds}
             toggleTag={props.toggleTag}
         />

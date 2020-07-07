@@ -9,7 +9,7 @@ import parse from "html-react-parser"
 import styles from "./WorkPage.module.less"
 import { getStringDate } from "../../helpers/dateHelpers"
 import GlobalLink from "../../components/links/GlobalLink"
-import Line from "../../components/cards/Line"
+import Line from "../../components/etc/Line"
 import LastProjectCards from "../../components/cards/LastProjectCards"
 
 type paramsTypes = {

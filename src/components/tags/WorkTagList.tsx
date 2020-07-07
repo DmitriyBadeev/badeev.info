@@ -24,7 +24,7 @@ const WorkTagList: React.FC<typeProps> = (props) => {
             toggleTag={(id) => null}
             activeTagsIds={[]}
             tagList={data?.tagsByWorkId || []}
-            style={{ margin: "0 -5px 10px" }}
+            style={{ margin: "0 -5px 10px", justifyContent: "center" }}
         />
     )
 }

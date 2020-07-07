@@ -4,8 +4,8 @@ import { useWorksByTagIdsQuery } from "../../types"
 import { getStringDate } from "../../helpers/dateHelpers"
 import ProjectCard from "./ProjectCard"
 import Loading from "../loading/Loading"
-import { Typography } from "antd"
 import FadePage from "../fade/FadePage"
+import NoData from "../etc/NoData"
 
 type propTypes = {
     className?: string
@@ -21,16 +21,15 @@ const FilteredProjectCards: React.FC<propTypes> = (props) => {
         },
     })
 
-    const { Title } = Typography
-
     if (error) return <pre>{error?.message}</pre>
 
     if (loading) return <Loading />
 
     const getWorks = () => {
         const works = data?.worksByTagIds?.nodes
-        if (works)
-            return works.map((work) => (
+
+        if (works && works.length !== 0) {
+            const workCards = works.map((work) => (
                 <Col lg={11} key={work?.id}>
                     <ProjectCard
                         id={work?.id}
@@ -42,16 +41,17 @@ const FilteredProjectCards: React.FC<propTypes> = (props) => {
                 </Col>
             ))
 
-        return <Title>Работы пропали</Title>
+            return (
+                <Row justify="space-between" gutter={[0, 20]}>
+                    {workCards}
+                </Row>
+            )
+        }
+
+        return <NoData />
     }
 
-    return (
-        <FadePage className={props.className}>
-            <Row justify="space-between" gutter={[0, 20]}>
-                {getWorks()}
-            </Row>
-        </FadePage>
-    )
+    return <FadePage className={props.className}>{getWorks()}</FadePage>
 }
 
 export default FilteredProjectCards

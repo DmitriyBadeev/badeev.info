@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./cards.module.less"
+import styles from "./elements.module.less"
 
 type propTypes = {
     className?: string
