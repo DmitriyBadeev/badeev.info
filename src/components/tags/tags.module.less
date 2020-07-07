@@ -16,9 +16,18 @@
     }
 }
 
-.tag:hover {
+.tagActive {
     color: white;
     background: @primary-color;
+}
+
+.tag:hover {
+    color: white;
+    background: @primary-color + 30;
+}
+
+.tag:active {
+    background: @primary-color - 15;
 }
 
 .tagList {

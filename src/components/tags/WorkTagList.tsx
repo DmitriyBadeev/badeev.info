@@ -7,6 +7,7 @@ type typeProps = {
     workId: number
 }
 
+//TODO Link in the tags and global store
 const WorkTagList: React.FC<typeProps> = (props) => {
     const { data, loading, error } = useTagsByWorkIdQuery({
         variables: {
@@ -18,7 +19,14 @@ const WorkTagList: React.FC<typeProps> = (props) => {
 
     if (loading) return <LocalLoading />
 
-    return <TagList tagList={data?.tagsByWorkId || []} style={{ margin: "0 -5px 10px" }} />
+    return (
+        <TagList
+            toggleTag={(id) => null}
+            activeTagsIds={[]}
+            tagList={data?.tagsByWorkId || []}
+            style={{ margin: "0 -5px 10px" }}
+        />
+    )
 }
 
 export default WorkTagList

@@ -5,7 +5,7 @@ import { Maybe } from "../../types"
 
 type propTypes = {
     height: number
-    img: any //TODO типизировать как-нибудь
+    img: string
     alt?: Maybe<string>
 }
 
@@ -43,7 +43,7 @@ const ImageCard: React.FC<propTypes> = (props) => {
                 in={isMouseEnter}
                 exit={false}
                 timeout={{
-                    enter: 3000,
+                    enter: 3500,
                 }}
             >
                 {(state) => (

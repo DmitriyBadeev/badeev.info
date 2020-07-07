@@ -15,7 +15,11 @@ const StringTagList: React.FC<propTypes> = (props) => {
     return (
         <div className={styles.tagList} style={props.style}>
             {props.tagList.map((tag, i) => {
-                return <TagComponent key={i}>{tag}</TagComponent>
+                return (
+                    <TagComponent isActive={false} key={i} id={i} onToggle={(id) => null}>
+                        {tag}
+                    </TagComponent>
+                )
             })}
         </div>
     )

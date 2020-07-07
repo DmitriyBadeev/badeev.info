@@ -8,7 +8,7 @@ import { Maybe } from "../../types"
 import styles from "./cards.module.less"
 
 type propTypes = {
-    img: any //TODO как-то типизировать
+    img: string
     title?: Maybe<string>
     date: string
     desc?: Maybe<string>

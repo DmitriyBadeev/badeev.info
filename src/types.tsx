@@ -24,6 +24,7 @@ export type Queries = {
     tagsByWorkId?: Maybe<Array<Maybe<Tag>>>
     workById?: Maybe<Work>
     works?: Maybe<WorkConnection>
+    worksByTagIds?: Maybe<WorkConnection>
 }
 
 export type QueriesAuthorsArgs = {
@@ -47,7 +48,14 @@ export type QueriesWorksArgs = {
     before?: Maybe<Scalars["String"]>
     first?: Maybe<Scalars["PaginationAmount"]>
     last?: Maybe<Scalars["PaginationAmount"]>
-    where?: Maybe<WorkFilter>
+}
+
+export type QueriesWorksByTagIdsArgs = {
+    after?: Maybe<Scalars["String"]>
+    before?: Maybe<Scalars["String"]>
+    first?: Maybe<Scalars["PaginationAmount"]>
+    last?: Maybe<Scalars["PaginationAmount"]>
+    tagIds?: Maybe<Array<Scalars["Int"]>>
 }
 
 export type Mutations = {
@@ -117,107 +125,6 @@ export type Work = {
     tags?: Maybe<Array<Maybe<TagWork>>>
     task?: Maybe<Scalars["String"]>
     title?: Maybe<Scalars["String"]>
-}
-
-export type WorkFilter = {
-    AND?: Maybe<Array<WorkFilter>>
-    countViews?: Maybe<Scalars["Int"]>
-    countViews_gt?: Maybe<Scalars["Int"]>
-    countViews_gte?: Maybe<Scalars["Int"]>
-    countViews_in?: Maybe<Array<Scalars["Int"]>>
-    countViews_lt?: Maybe<Scalars["Int"]>
-    countViews_lte?: Maybe<Scalars["Int"]>
-    countViews_not?: Maybe<Scalars["Int"]>
-    countViews_not_gt?: Maybe<Scalars["Int"]>
-    countViews_not_gte?: Maybe<Scalars["Int"]>
-    countViews_not_in?: Maybe<Array<Scalars["Int"]>>
-    countViews_not_lt?: Maybe<Scalars["Int"]>
-    countViews_not_lte?: Maybe<Scalars["Int"]>
-    date?: Maybe<Scalars["DateTime"]>
-    date_gt?: Maybe<Scalars["DateTime"]>
-    date_gte?: Maybe<Scalars["DateTime"]>
-    date_in?: Maybe<Array<Scalars["DateTime"]>>
-    date_lt?: Maybe<Scalars["DateTime"]>
-    date_lte?: Maybe<Scalars["DateTime"]>
-    date_not?: Maybe<Scalars["DateTime"]>
-    date_not_gt?: Maybe<Scalars["DateTime"]>
-    date_not_gte?: Maybe<Scalars["DateTime"]>
-    date_not_in?: Maybe<Array<Scalars["DateTime"]>>
-    date_not_lt?: Maybe<Scalars["DateTime"]>
-    date_not_lte?: Maybe<Scalars["DateTime"]>
-    html?: Maybe<Scalars["String"]>
-    html_contains?: Maybe<Scalars["String"]>
-    html_ends_with?: Maybe<Scalars["String"]>
-    html_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    html_not?: Maybe<Scalars["String"]>
-    html_not_contains?: Maybe<Scalars["String"]>
-    html_not_ends_with?: Maybe<Scalars["String"]>
-    html_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    html_not_starts_with?: Maybe<Scalars["String"]>
-    html_starts_with?: Maybe<Scalars["String"]>
-    id?: Maybe<Scalars["Int"]>
-    id_gt?: Maybe<Scalars["Int"]>
-    id_gte?: Maybe<Scalars["Int"]>
-    id_in?: Maybe<Array<Scalars["Int"]>>
-    id_lt?: Maybe<Scalars["Int"]>
-    id_lte?: Maybe<Scalars["Int"]>
-    id_not?: Maybe<Scalars["Int"]>
-    id_not_gt?: Maybe<Scalars["Int"]>
-    id_not_gte?: Maybe<Scalars["Int"]>
-    id_not_in?: Maybe<Array<Scalars["Int"]>>
-    id_not_lt?: Maybe<Scalars["Int"]>
-    id_not_lte?: Maybe<Scalars["Int"]>
-    imgPath?: Maybe<Scalars["String"]>
-    imgPath_contains?: Maybe<Scalars["String"]>
-    imgPath_ends_with?: Maybe<Scalars["String"]>
-    imgPath_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    imgPath_not?: Maybe<Scalars["String"]>
-    imgPath_not_contains?: Maybe<Scalars["String"]>
-    imgPath_not_ends_with?: Maybe<Scalars["String"]>
-    imgPath_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    imgPath_not_starts_with?: Maybe<Scalars["String"]>
-    imgPath_starts_with?: Maybe<Scalars["String"]>
-    link?: Maybe<Scalars["String"]>
-    link_contains?: Maybe<Scalars["String"]>
-    link_ends_with?: Maybe<Scalars["String"]>
-    link_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    link_not?: Maybe<Scalars["String"]>
-    link_not_contains?: Maybe<Scalars["String"]>
-    link_not_ends_with?: Maybe<Scalars["String"]>
-    link_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    link_not_starts_with?: Maybe<Scalars["String"]>
-    link_starts_with?: Maybe<Scalars["String"]>
-    OR?: Maybe<Array<WorkFilter>>
-    shortDescription?: Maybe<Scalars["String"]>
-    shortDescription_contains?: Maybe<Scalars["String"]>
-    shortDescription_ends_with?: Maybe<Scalars["String"]>
-    shortDescription_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    shortDescription_not?: Maybe<Scalars["String"]>
-    shortDescription_not_contains?: Maybe<Scalars["String"]>
-    shortDescription_not_ends_with?: Maybe<Scalars["String"]>
-    shortDescription_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    shortDescription_not_starts_with?: Maybe<Scalars["String"]>
-    shortDescription_starts_with?: Maybe<Scalars["String"]>
-    task?: Maybe<Scalars["String"]>
-    task_contains?: Maybe<Scalars["String"]>
-    task_ends_with?: Maybe<Scalars["String"]>
-    task_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    task_not?: Maybe<Scalars["String"]>
-    task_not_contains?: Maybe<Scalars["String"]>
-    task_not_ends_with?: Maybe<Scalars["String"]>
-    task_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    task_not_starts_with?: Maybe<Scalars["String"]>
-    task_starts_with?: Maybe<Scalars["String"]>
-    title?: Maybe<Scalars["String"]>
-    title_contains?: Maybe<Scalars["String"]>
-    title_ends_with?: Maybe<Scalars["String"]>
-    title_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    title_not?: Maybe<Scalars["String"]>
-    title_not_contains?: Maybe<Scalars["String"]>
-    title_not_ends_with?: Maybe<Scalars["String"]>
-    title_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>
-    title_not_starts_with?: Maybe<Scalars["String"]>
-    title_starts_with?: Maybe<Scalars["String"]>
 }
 
 /** A connection to a list of items. */
@@ -447,6 +354,25 @@ export type LastWorksQuery = { __typename?: "Queries" } & {
     >
 }
 
+export type WorksByTagIdsQueryVariables = Exact<{
+    tagIds?: Maybe<Array<Scalars["Int"]>>
+    count?: Maybe<Scalars["PaginationAmount"]>
+}>
+
+export type WorksByTagIdsQuery = { __typename?: "Queries" } & {
+    worksByTagIds?: Maybe<
+        { __typename?: "WorkConnection" } & {
+            nodes?: Maybe<
+                Array<
+                    Maybe<
+                        { __typename?: "Work" } & Pick<Work, "id" | "title" | "shortDescription" | "date" | "imgPath">
+                    >
+                >
+            >
+        }
+    >
+}
+
 export type TagsByWorkIdQueryVariables = Exact<{
     workId: Scalars["Int"]
 }>
@@ -532,6 +458,56 @@ export function useLastWorksLazyQuery(
 export type LastWorksQueryHookResult = ReturnType<typeof useLastWorksQuery>
 export type LastWorksLazyQueryHookResult = ReturnType<typeof useLastWorksLazyQuery>
 export type LastWorksQueryResult = ApolloReactCommon.QueryResult<LastWorksQuery, LastWorksQueryVariables>
+export const WorksByTagIdsDocument = gql`
+    query worksByTagIds($tagIds: [Int!], $count: PaginationAmount) {
+        worksByTagIds(tagIds: $tagIds, first: $count) {
+            nodes {
+                id
+                title
+                shortDescription
+                date
+                imgPath
+            }
+        }
+    }
+`
+
+/**
+ * __useWorksByTagIdsQuery__
+ *
+ * To run a query within a React component, call `useWorksByTagIdsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWorksByTagIdsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWorksByTagIdsQuery({
+ *   variables: {
+ *      tagIds: // value for 'tagIds'
+ *      count: // value for 'count'
+ *   },
+ * });
+ */
+export function useWorksByTagIdsQuery(
+    baseOptions?: ApolloReactHooks.QueryHookOptions<WorksByTagIdsQuery, WorksByTagIdsQueryVariables>
+) {
+    return ApolloReactHooks.useQuery<WorksByTagIdsQuery, WorksByTagIdsQueryVariables>(
+        WorksByTagIdsDocument,
+        baseOptions
+    )
+}
+export function useWorksByTagIdsLazyQuery(
+    baseOptions?: ApolloReactHooks.LazyQueryHookOptions<WorksByTagIdsQuery, WorksByTagIdsQueryVariables>
+) {
+    return ApolloReactHooks.useLazyQuery<WorksByTagIdsQuery, WorksByTagIdsQueryVariables>(
+        WorksByTagIdsDocument,
+        baseOptions
+    )
+}
+export type WorksByTagIdsQueryHookResult = ReturnType<typeof useWorksByTagIdsQuery>
+export type WorksByTagIdsLazyQueryHookResult = ReturnType<typeof useWorksByTagIdsLazyQuery>
+export type WorksByTagIdsQueryResult = ApolloReactCommon.QueryResult<WorksByTagIdsQuery, WorksByTagIdsQueryVariables>
 export const TagsByWorkIdDocument = gql`
     query tagsByWorkId($workId: Int!) {
         tagsByWorkId(workId: $workId) {

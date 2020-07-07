@@ -35,7 +35,7 @@ const LastProjectCards: React.FC<propTypes> = (props) => {
                             id={work?.id}
                             title={work?.title}
                             date={getStringDate(work?.date)}
-                            img={work?.imgPath}
+                            img={work?.imgPath || ""}
                             desc={work?.shortDescription}
                         />
                     </Col>
