@@ -1,7 +1,6 @@
 import React from "react"
 import styles from "./Avatar.module.less"
 import { Typography, Descriptions } from "antd"
-import img from "../../assets/avatar.png"
 import { getAge } from "../../helpers/dateHelpers"
 import GlobalLink from "../../components/links/GlobalLink"
 import Contacts from "./Contacts"
@@ -16,7 +15,7 @@ const Avatar: React.FC<typeProps> = (withDesc) => {
     return (
         <>
             <div className={styles.avatarWrapper}>
-                <img src={img} alt="Аватар" className={styles.avatar} />
+                <img src="https://storage.badeev.info/avatar.png" alt="Аватар" className={styles.avatar} />
             </div>
             {withDesc && <AvatarDesc />}
         </>

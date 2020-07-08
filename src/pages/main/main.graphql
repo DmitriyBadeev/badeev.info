@@ -1,0 +1,13 @@
+query backendTags {
+    backendTags {
+        id
+        title
+    }
+}
+
+query frontendTags {
+    frontendTags {
+        id
+        title
+    }
+}

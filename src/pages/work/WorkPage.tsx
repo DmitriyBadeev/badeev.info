@@ -79,8 +79,8 @@ const WorkPage: React.FC = () => {
                 <Title level={2} style={{ textAlign: "center" }}>
                     {work?.title}
                 </Title>
-                <Row className="mt-30 mb-50">
-                    <Col lg={{ offset: 3, span: 16 }}>
+                <Row justify="center" className="mt-30 mb-50">
+                    <Col lg={{ span: 18 }}>
                         <Paragraph style={{ ...textSize }} className={styles.paragraph}>
                             <em>Задача:</em> {work?.task}
                         </Paragraph>

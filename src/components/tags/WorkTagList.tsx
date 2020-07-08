@@ -7,7 +7,6 @@ type typeProps = {
     workId: number
 }
 
-//TODO Link in the tags and global store
 const WorkTagList: React.FC<typeProps> = (props) => {
     const { data, loading, error } = useTagsByWorkIdQuery({
         variables: {

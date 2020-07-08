@@ -20,6 +20,8 @@ export type Scalars = {
 export type Queries = {
     __typename?: "Queries"
     authors?: Maybe<Array<Maybe<Author>>>
+    backendTags?: Maybe<Array<Maybe<Tag>>>
+    frontendTags?: Maybe<Array<Maybe<Tag>>>
     tags?: Maybe<Array<Maybe<Tag>>>
     tagsByWorkId?: Maybe<Array<Maybe<Tag>>>
     workById?: Maybe<Work>
@@ -60,16 +62,29 @@ export type QueriesWorksByTagIdsArgs = {
 
 export type Mutations = {
     __typename?: "Mutations"
+    addBackendTag?: Maybe<BackendTag>
+    addFrontendTag?: Maybe<FrontendTag>
     connectTagAndWork?: Maybe<TagWork>
     createAuthor?: Maybe<Author>
     createTag?: Maybe<Tag>
     createWork?: Maybe<Work>
     deleteAuthor?: Maybe<Author>
+    deleteBackendTag?: Maybe<BackendTag>
+    deleteFrontendTag?: Maybe<FrontendTag>
     deleteTag?: Maybe<Tag>
     deleteWork?: Maybe<Work>
+    disconnectTagAndWork?: Maybe<TagWork>
     updateAuthor?: Maybe<Author>
     updateTag?: Maybe<Tag>
     updateWork?: Maybe<Work>
+}
+
+export type MutationsAddBackendTagArgs = {
+    tagId: Scalars["Int"]
+}
+
+export type MutationsAddFrontendTagArgs = {
+    tagId: Scalars["Int"]
 }
 
 export type MutationsConnectTagAndWorkArgs = {
@@ -92,12 +107,24 @@ export type MutationsDeleteAuthorArgs = {
     authorId: Scalars["Int"]
 }
 
+export type MutationsDeleteBackendTagArgs = {
+    tagId: Scalars["Int"]
+}
+
+export type MutationsDeleteFrontendTagArgs = {
+    tagId: Scalars["Int"]
+}
+
 export type MutationsDeleteTagArgs = {
     tagId: Scalars["Int"]
 }
 
 export type MutationsDeleteWorkArgs = {
     workId: Scalars["Int"]
+}
+
+export type MutationsDisconnectTagAndWorkArgs = {
+    inputTagWork?: Maybe<ConnectTagWorkInput>
 }
 
 export type MutationsUpdateAuthorArgs = {
@@ -321,6 +348,20 @@ export type TagWork = {
     workId: Scalars["Int"]
 }
 
+export type FrontendTag = {
+    __typename?: "FrontendTag"
+    id: Scalars["Int"]
+    tag?: Maybe<Tag>
+    tagId: Scalars["Int"]
+}
+
+export type BackendTag = {
+    __typename?: "BackendTag"
+    id: Scalars["Int"]
+    tag?: Maybe<Tag>
+    tagId: Scalars["Int"]
+}
+
 export type CreateAuthorInput = {
     link?: Maybe<Scalars["String"]>
     name?: Maybe<Scalars["String"]>
@@ -379,6 +420,18 @@ export type TagsByWorkIdQueryVariables = Exact<{
 
 export type TagsByWorkIdQuery = { __typename?: "Queries" } & {
     tagsByWorkId?: Maybe<Array<Maybe<{ __typename?: "Tag" } & Pick<Tag, "id" | "title">>>>
+}
+
+export type BackendTagsQueryVariables = Exact<{ [key: string]: never }>
+
+export type BackendTagsQuery = { __typename?: "Queries" } & {
+    backendTags?: Maybe<Array<Maybe<{ __typename?: "Tag" } & Pick<Tag, "id" | "title">>>>
+}
+
+export type FrontendTagsQueryVariables = Exact<{ [key: string]: never }>
+
+export type FrontendTagsQuery = { __typename?: "Queries" } & {
+    frontendTags?: Maybe<Array<Maybe<{ __typename?: "Tag" } & Pick<Tag, "id" | "title">>>>
 }
 
 export type WorksQueryVariables = Exact<{ [key: string]: never }>
@@ -533,7 +586,6 @@ export const TagsByWorkIdDocument = gql`
  *   },
  * });
  */
-
 export function useTagsByWorkIdQuery(
     baseOptions?: ApolloReactHooks.QueryHookOptions<TagsByWorkIdQuery, TagsByWorkIdQueryVariables>
 ) {
@@ -550,6 +602,83 @@ export function useTagsByWorkIdLazyQuery(
 export type TagsByWorkIdQueryHookResult = ReturnType<typeof useTagsByWorkIdQuery>
 export type TagsByWorkIdLazyQueryHookResult = ReturnType<typeof useTagsByWorkIdLazyQuery>
 export type TagsByWorkIdQueryResult = ApolloReactCommon.QueryResult<TagsByWorkIdQuery, TagsByWorkIdQueryVariables>
+export const BackendTagsDocument = gql`
+    query backendTags {
+        backendTags {
+            id
+            title
+        }
+    }
+`
+
+/**
+ * __useBackendTagsQuery__
+ *
+ * To run a query within a React component, call `useBackendTagsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBackendTagsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBackendTagsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useBackendTagsQuery(
+    baseOptions?: ApolloReactHooks.QueryHookOptions<BackendTagsQuery, BackendTagsQueryVariables>
+) {
+    return ApolloReactHooks.useQuery<BackendTagsQuery, BackendTagsQueryVariables>(BackendTagsDocument, baseOptions)
+}
+export function useBackendTagsLazyQuery(
+    baseOptions?: ApolloReactHooks.LazyQueryHookOptions<BackendTagsQuery, BackendTagsQueryVariables>
+) {
+    return ApolloReactHooks.useLazyQuery<BackendTagsQuery, BackendTagsQueryVariables>(BackendTagsDocument, baseOptions)
+}
+export type BackendTagsQueryHookResult = ReturnType<typeof useBackendTagsQuery>
+export type BackendTagsLazyQueryHookResult = ReturnType<typeof useBackendTagsLazyQuery>
+export type BackendTagsQueryResult = ApolloReactCommon.QueryResult<BackendTagsQuery, BackendTagsQueryVariables>
+export const FrontendTagsDocument = gql`
+    query frontendTags {
+        frontendTags {
+            id
+            title
+        }
+    }
+`
+
+/**
+ * __useFrontendTagsQuery__
+ *
+ * To run a query within a React component, call `useFrontendTagsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFrontendTagsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFrontendTagsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFrontendTagsQuery(
+    baseOptions?: ApolloReactHooks.QueryHookOptions<FrontendTagsQuery, FrontendTagsQueryVariables>
+) {
+    return ApolloReactHooks.useQuery<FrontendTagsQuery, FrontendTagsQueryVariables>(FrontendTagsDocument, baseOptions)
+}
+export function useFrontendTagsLazyQuery(
+    baseOptions?: ApolloReactHooks.LazyQueryHookOptions<FrontendTagsQuery, FrontendTagsQueryVariables>
+) {
+    return ApolloReactHooks.useLazyQuery<FrontendTagsQuery, FrontendTagsQueryVariables>(
+        FrontendTagsDocument,
+        baseOptions
+    )
+}
+export type FrontendTagsQueryHookResult = ReturnType<typeof useFrontendTagsQuery>
+export type FrontendTagsLazyQueryHookResult = ReturnType<typeof useFrontendTagsLazyQuery>
+export type FrontendTagsQueryResult = ApolloReactCommon.QueryResult<FrontendTagsQuery, FrontendTagsQueryVariables>
 export const WorksDocument = gql`
     query works {
         works {

@@ -5,7 +5,7 @@ import Avatar from "../../components/avatar/Avatar"
 import { getDaysToEnd } from "../../helpers/dateHelpers"
 import Card from "../../components/cards/Card"
 import Line from "../../components/etc/Line"
-import TagList from "../../components/tags/StringTagList"
+import TagList from "../../components/tags/TagList"
 import LocalLink from "../../components/links/LocalLink"
 import GlobalLink from "../../components/links/GlobalLink"
 import { ArrowRightOutlined } from "@ant-design/icons"
@@ -13,10 +13,15 @@ import FadePage from "../../components/fade/FadePage"
 import Contacts from "../../components/avatar/Contacts"
 import LastProjectCards from "../../components/cards/LastProjectCards"
 import webSvg from "../../assets/web.svg"
+import { useFrontendTagsQuery, useBackendTagsQuery } from "../../types"
+import LocalLoading from "../../components/loading/LocalLoading"
 
 const { Title, Paragraph } = Typography
 
 const MainPage: React.FC = () => {
+    const frontendTags = useFrontendTagsQuery()
+    const backendTags = useBackendTagsQuery()
+
     return (
         <>
             <div className="main-diagonal" />
@@ -92,25 +97,14 @@ const MainPage: React.FC = () => {
                                             <Title level={4}>Frontend</Title>
                                             <Line />
                                             <Paragraph className="mt-20">
-                                                Задизайню и сверстаю сайт, адаптирую его под все телефоны, планшеты,
+                                                Сверстаю и задизайню сайт, адаптирую его под все телефоны, планшеты,
                                                 мониторы и заставлю это все работать одинаково во всех браузерах.
                                             </Paragraph>
-                                            <TagList
-                                                tagList={[
-                                                    "HTML",
-                                                    "CSS",
-                                                    "SaSS",
-                                                    "SCSS",
-                                                    "LESS",
-                                                    "PostCSS",
-                                                    "JS",
-                                                    "TypeScript",
-                                                    "ReactJS",
-                                                    "Webpack",
-                                                    "Gulp",
-                                                    "Дизайн",
-                                                ]}
-                                            />
+                                            {frontendTags.loading ? (
+                                                <LocalLoading />
+                                            ) : (
+                                                <TagList tagList={frontendTags.data?.frontendTags || []} />
+                                            )}
                                         </Card>
                                     </Col>
                                     <Col xl={{ span: 11 }} lg={{ span: 24 }}>
@@ -130,19 +124,11 @@ const MainPage: React.FC = () => {
                                                 Напишу сложную бизнес-логику, настрою CMS, организую базу данных и
                                                 заставлю большую и сложную систему работать, как часы.
                                             </Paragraph>
-                                            <TagList
-                                                tagList={[
-                                                    "C#",
-                                                    "ASP.NET Core",
-                                                    "REST API",
-                                                    "ООП",
-                                                    "Entity Framework",
-                                                    "CMS",
-                                                    "Базы данных",
-                                                    "MSSql",
-                                                    "PostgreSql",
-                                                ]}
-                                            />
+                                            {backendTags.loading ? (
+                                                <LocalLoading />
+                                            ) : (
+                                                <TagList tagList={backendTags.data?.backendTags || []} />
+                                            )}
                                         </Card>
                                     </Col>
                                 </Row>
