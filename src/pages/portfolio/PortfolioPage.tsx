@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import FadePage from "../../components/fade/FadePage"
 import FilteredProjectCards from "../../components/cards/FilteredProjectCards"
 import { Row, Col } from "antd"
