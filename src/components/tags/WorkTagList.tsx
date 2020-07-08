@@ -19,14 +19,7 @@ const WorkTagList: React.FC<typeProps> = (props) => {
 
     if (loading) return <LocalLoading />
 
-    return (
-        <TagList
-            toggleTag={(id) => null}
-            activeTagsIds={[]}
-            tagList={data?.tagsByWorkId || []}
-            style={{ margin: "0 -5px 10px", justifyContent: "center" }}
-        />
-    )
+    return <TagList tagList={data?.tagsByWorkId || []} style={{ margin: "0 -5px 10px", justifyContent: "center" }} />
 }
 
 export default WorkTagList

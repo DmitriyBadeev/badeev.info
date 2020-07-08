@@ -6,17 +6,20 @@ import ProjectCard from "./ProjectCard"
 import Loading from "../loading/Loading"
 import FadePage from "../fade/FadePage"
 import NoData from "../etc/NoData"
+import { observer } from "mobx-react"
+import useStore from "../../store/useStore"
 
 type propTypes = {
     className?: string
-    tagIds: number[]
     count: number
 }
 
-const FilteredProjectCards: React.FC<propTypes> = (props) => {
+const FilteredProjectCards: React.FC<propTypes> = observer((props) => {
+    const { tagStore } = useStore()
+
     const { data, loading, error } = useWorksByTagIdsQuery({
         variables: {
-            tagIds: props.tagIds,
+            tagIds: tagStore.activeTags,
             count: props.count,
         },
     })
@@ -52,6 +55,6 @@ const FilteredProjectCards: React.FC<propTypes> = (props) => {
     }
 
     return <FadePage className={props.className}>{getWorks()}</FadePage>
-}
+})
 
 export default FilteredProjectCards

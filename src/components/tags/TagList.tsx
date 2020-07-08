@@ -2,15 +2,17 @@ import React, { CSSProperties } from "react"
 import styles from "./tags.module.less"
 import TagComponent from "./Tag"
 import { Tag } from "../../types"
+import useStore from "../../store/useStore"
+import { observer } from "mobx-react"
 
 type propTypes = {
     tagList: Array<Tag | undefined | null>
     style?: CSSProperties
-    activeTagsIds: number[]
-    toggleTag: (id: number) => void
 }
 
-const TagList: React.FC<propTypes> = (props) => {
+const TagList: React.FC<propTypes> = observer((props) => {
+    const { tagStore } = useStore()
+
     if (!props.tagList) return <div className={styles.tagList}></div>
 
     return (
@@ -20,9 +22,9 @@ const TagList: React.FC<propTypes> = (props) => {
                     return (
                         <TagComponent
                             key={tag.id}
-                            isActive={props.activeTagsIds.includes(tag.id)}
+                            isActive={tagStore.activeTags.includes(tag.id)}
                             id={tag.id}
-                            onToggle={props.toggleTag}
+                            onToggle={(id) => tagStore.toggleTag(id)}
                         >
                             {tag.title}
                         </TagComponent>
@@ -31,6 +33,6 @@ const TagList: React.FC<propTypes> = (props) => {
             })}
         </div>
     )
-}
+})
 
 export default TagList

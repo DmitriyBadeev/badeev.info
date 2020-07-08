@@ -1,5 +1,6 @@
 import React from "react"
 import styles from "./tags.module.less"
+import LocalLink from "../links/LocalLink"
 
 type propTypes = {
     isActive: boolean
@@ -9,9 +10,14 @@ type propTypes = {
 
 const Tag: React.FC<propTypes> = (props) => {
     return (
-        <div className={`${styles.tag} ${props.isActive && styles.tagActive}`} onClick={() => props.onToggle(props.id)}>
-            {props.children}
-        </div>
+        <LocalLink to="/portfolio">
+            <div
+                className={`${styles.tag} ${props.isActive && styles.tagActive}`}
+                onClick={() => props.onToggle(props.id)}
+            >
+                {props.children}
+            </div>
+        </LocalLink>
     )
 }
 

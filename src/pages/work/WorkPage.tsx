@@ -37,18 +37,14 @@ const WorkPage: React.FC = () => {
         }
     }, [loading, data])
 
-    const renderHtml = () => {
-        if (work != null && work.html !== null) {
-            return parse(work.html ?? "")
-        }
-    }
+    const renderHtml = () => parse(work?.html ?? "")
 
     const renderAuthors = () => {
         const authors = work?.authors?.map((el) => {
             if (el?.link)
                 return (
                     <div key={el.id}>
-                        <GlobalLink to={el?.link}>{el.name}</GlobalLink>: {el.role}
+                        <GlobalLink to={el.link}>{el.name}</GlobalLink>: {el.role}
                     </div>
                 )
             else if (el) {
@@ -69,9 +65,9 @@ const WorkPage: React.FC = () => {
 
     const work = data?.workById
 
-    return loading ? (
-        <Loading />
-    ) : (
+    if (loading) return <Loading />
+
+    return (
         <FadePage>
             <div className="wrapper-page">
                 <Row justify="center">
