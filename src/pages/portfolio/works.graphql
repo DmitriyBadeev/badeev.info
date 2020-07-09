@@ -10,6 +10,12 @@ query works {
     }
 }
 
+query Count {
+    works {
+        totalCount
+    }
+}
+
 query tags {
     tags {
         id

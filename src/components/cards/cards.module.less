@@ -3,6 +3,7 @@
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     background: white;
+    transition: all 0.8s cubic-bezier(0, 0, 0, 1);
 }
 
 .imageCard {
@@ -14,6 +15,10 @@
 .link:hover {
     .imageCard .image {
         transform: scale(1.02);
+    }
+
+    .card {
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
     }
 
     .desc {

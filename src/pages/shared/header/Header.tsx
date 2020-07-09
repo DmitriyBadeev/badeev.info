@@ -4,9 +4,12 @@ import Burger from "../../../components/burger/Burger"
 import Navbar from "../navbar/Navbar"
 import styles from "./Header.module.less"
 import { Layout } from "antd"
+import useStore from "../../../store/useStore"
+import { observer } from "mobx-react"
 
-const Header: React.FC = () => {
+const Header: React.FC = observer(() => {
     const [isOpenNavbar, setIsOpenNavbar] = useState(false)
+    const { navStore } = useStore()
 
     return (
         <Layout.Header
@@ -19,11 +22,12 @@ const Header: React.FC = () => {
         >
             <Navbar onClose={() => setIsOpenNavbar(false)} isOpen={isOpenNavbar} />
             <div className={styles.wrapper}>
-                <Logo />
+                <Logo isBack={navStore.isWorkPage} />
+
                 <Burger onClick={() => setIsOpenNavbar(true)} />
             </div>
         </Layout.Header>
     )
-}
+})
 
 export default Header

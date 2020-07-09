@@ -11,6 +11,8 @@ import { getStringDate } from "../../helpers/dateHelpers"
 import GlobalLink from "../../components/links/GlobalLink"
 import Line from "../../components/etc/Line"
 import LastProjectCards from "../../components/cards/LastProjectCards"
+import useStore from "../../store/useStore"
+import { observer } from "mobx-react"
 
 type paramsTypes = {
     id: string
@@ -22,8 +24,9 @@ const textSize: CSSProperties = {
     fontSize: "1.5rem",
 }
 
-const WorkPage: React.FC = () => {
+const WorkPage: React.FC = observer(() => {
     let { id } = useParams<paramsTypes>()
+    const { navStore } = useStore()
 
     const { data, loading } = useWorkByIdQuery({
         variables: {
@@ -34,8 +37,12 @@ const WorkPage: React.FC = () => {
     useEffect(() => {
         if (!loading && data?.workById === null) {
             window.location.replace("/404")
+        } else {
+            navStore.isWorkPageNow(data?.workById?.title || "", data?.workById?.id || 0)
         }
-    }, [loading, data])
+
+        return () => navStore.isNotWorkPageNow()
+    }, [loading, data, navStore])
 
     const renderHtml = () => parse(work?.html ?? "")
 
@@ -127,6 +134,6 @@ const WorkPage: React.FC = () => {
             </Row>
         </FadePage>
     )
-}
+})
 
 export default WorkPage

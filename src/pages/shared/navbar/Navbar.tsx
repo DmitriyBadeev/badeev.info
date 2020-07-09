@@ -4,6 +4,8 @@ import styles from "./Navbar.module.less"
 import LocalLink from "../../../components/links/LocalLink"
 import CSSTransition from "react-transition-group/CSSTransition"
 import { LockOutlined } from "@ant-design/icons"
+import useStore from "../../../store/useStore"
+import { observer } from "mobx-react"
 
 const { Title } = Typography
 
@@ -23,7 +25,9 @@ const enterHandler = (e: React.FormEvent) => {
     console.log(e.target)
 }
 
-const Navbar: React.FC<propTypes> = (props) => {
+const Navbar: React.FC<propTypes> = observer((props) => {
+    const { navStore } = useStore()
+
     return (
         <CSSTransition
             in={props.isOpen}
@@ -39,7 +43,7 @@ const Navbar: React.FC<propTypes> = (props) => {
 
                 <Row style={{ width: "100vw", marginTop: "60px" }} justify="space-around" gutter={[0, 40]}>
                     <Col
-                        lg={{ span: 9, order: 1 }}
+                        lg={{ span: 8, order: 1 }}
                         md={{ span: 16, order: 2 }}
                         sm={{ span: 20, order: 2 }}
                         xs={{ span: 24, order: 2 }}
@@ -62,10 +66,10 @@ const Navbar: React.FC<propTypes> = (props) => {
                         </form>
                     </Col>
                     <Col
-                        lg={{ span: 9, order: 2 }}
+                        lg={{ span: 10, order: 2 }}
                         md={{ span: 16, order: 1 }}
-                        sm={{ span: 20, order: 2 }}
-                        xs={{ span: 24, order: 2 }}
+                        sm={{ span: 20, order: 1 }}
+                        xs={{ span: 24, order: 1 }}
                     >
                         <Title level={1} style={titleStyles}>
                             Навигация
@@ -78,12 +82,17 @@ const Navbar: React.FC<propTypes> = (props) => {
                             <LocalLink to="/portfolio" onClick={props.onClose} type="dark">
                                 Портфолио
                             </LocalLink>
+                            {navStore.isWorkPage && (
+                                <LocalLink to={navStore.link} onClick={props.onClose} type="dark">
+                                    {navStore.workTitle}
+                                </LocalLink>
+                            )}
                         </div>
                     </Col>
                 </Row>
             </div>
         </CSSTransition>
     )
-}
+})
 
 export default Navbar

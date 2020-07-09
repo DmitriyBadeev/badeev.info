@@ -10,7 +10,7 @@ const AllTagList: React.FC = () => {
 
     if (loading) return <LocalLoading />
 
-    return <TagList tagList={data?.tags || []} style={{ margin: "0 -5px 2rem", justifyContent: "center" }} />
+    return <TagList tagList={data?.tags || []} style={{ margin: "0 -5px 1.5rem", justifyContent: "center" }} />
 }
 
 export default AllTagList
