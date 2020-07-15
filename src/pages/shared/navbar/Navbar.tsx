@@ -6,6 +6,7 @@ import CSSTransition from "react-transition-group/CSSTransition"
 import { LockOutlined } from "@ant-design/icons"
 import useStore from "../../../store/useStore"
 import { observer } from "mobx-react"
+import GlobalLink from "../../../components/links/GlobalLink"
 
 const { Title } = Typography
 
@@ -26,7 +27,7 @@ const enterHandler = (e: React.FormEvent) => {
 }
 
 const Navbar: React.FC<propTypes> = observer((props) => {
-    const { navStore } = useStore()
+    const { navStore, AuthService } = useStore()
 
     return (
         <CSSTransition
@@ -51,19 +52,31 @@ const Navbar: React.FC<propTypes> = observer((props) => {
                         <Title level={1} style={titleStyles}>
                             Тайный бункер
                         </Title>
-                        <form onSubmit={enterHandler}>
-                            <Space direction="vertical" size="large" className="mt-30 w-100">
-                                <Input.Password
-                                    name="password"
-                                    prefix={<LockOutlined style={{ color: "#8C8C8C" }} />}
-                                    placeholder="Секретный ключ"
-                                    size="large"
-                                />
-                                <Button htmlType="submit" type="primary" className={styles.button} size="large">
-                                    Войти
-                                </Button>
-                            </Space>
-                        </form>
+                        {AuthService.user === null ? (
+                            <form onSubmit={enterHandler}>
+                                <Space direction="vertical" size="large" className="mt-30 w-100">
+                                    <Input.Password
+                                        name="password"
+                                        prefix={<LockOutlined style={{ color: "#8C8C8C" }} />}
+                                        placeholder="Секретный ключ"
+                                        size="large"
+                                    />
+                                    <Button
+                                        htmlType="submit"
+                                        type="primary"
+                                        className={styles.button}
+                                        size="large"
+                                        onClick={AuthService.signin}
+                                    >
+                                        Войти
+                                    </Button>
+                                </Space>
+                            </form>
+                        ) : (
+                            <Button>
+                                <GlobalLink to="https://cabinet.badeev.info">Вход в бункер</GlobalLink>
+                            </Button>
+                        )}
                     </Col>
                     <Col
                         lg={{ span: 10, order: 2 }}

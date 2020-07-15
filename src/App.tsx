@@ -6,13 +6,22 @@ import Shared from "./pages/shared/Shared"
 import MainPage from "./pages/main/MainPage"
 import PortfolioPage from "./pages/portfolio/PortfolioPage"
 import WorkPage from "./pages/work/WorkPage"
+import AuthComplete from "./pages/auth/AuthComplete"
 import NotFound from "./pages/errors/NotFound"
+import { observer } from "mobx-react"
+import useStore from "./store/useStore"
 
 const client = new ApolloClient({
     uri: "https://api.badeev.info/graphql?",
 })
 
-const App: React.FC = () => {
+const App: React.FC = observer(() => {
+    const { AuthService } = useStore()
+
+    useEffect(() => {
+        AuthService.loadUser()
+    }, [AuthService])
+
     return (
         <ApolloProvider client={client}>
             <BrowserRouter>
@@ -22,6 +31,7 @@ const App: React.FC = () => {
                             <Route exact path="/" component={MainPage} />
                             <Route path="/portfolio" component={PortfolioPage} exact />
                             <Route path="/portfolio/:id" component={WorkPage} exact />
+                            <Route path="/auth-complete" component={AuthComplete} exact />
                             <Route path="/404" component={NotFound} />
                             <Route component={RedirectToNotFound} />
                         </Switch>
@@ -30,7 +40,7 @@ const App: React.FC = () => {
             </BrowserRouter>
         </ApolloProvider>
     )
-}
+})
 
 export default App
 
