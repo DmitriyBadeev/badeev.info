@@ -3,7 +3,7 @@ import { Typography, Button, Row, Col, Input, Space } from "antd"
 import styles from "./Navbar.module.less"
 import LocalLink from "../../../components/links/LocalLink"
 import CSSTransition from "react-transition-group/CSSTransition"
-import { LockOutlined } from "@ant-design/icons"
+import { LockOutlined, EnterOutlined } from "@ant-design/icons"
 import useStore from "../../../store/useStore"
 import { observer } from "mobx-react"
 import GlobalLink from "../../../components/links/GlobalLink"
@@ -73,9 +73,12 @@ const Navbar: React.FC<propTypes> = observer((props) => {
                                 </Space>
                             </form>
                         ) : (
-                            <Button>
-                                <GlobalLink to="https://cabinet.badeev.info">Вход в бункер</GlobalLink>
-                            </Button>
+                            <GlobalLink to="https://cabinet.badeev.info" type="dark" className={styles.enter}>
+                                <Space direction="vertical" style={{ alignItems: "center" }}>
+                                    <EnterOutlined className={styles.enterIcon} />
+                                    Войти в бункер
+                                </Space>
+                            </GlobalLink>
                         )}
                     </Col>
                     <Col

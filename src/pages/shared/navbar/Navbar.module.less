@@ -52,3 +52,28 @@
         right: 30px;
     }
 }
+
+.enter {
+    margin-top: 50px;
+    background: rgba(30, 30, 30, 0.8);
+    padding: 30px;
+    border-radius: 20px;
+    align-items: center;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:hover {
+        .enterIcon {
+            color: @primary-color;
+        }
+    }
+}
+
+.enterIcon {
+    display: flex;
+    color: white;
+    font-size: 60px;
+    transition: color 0.3s;
+}
